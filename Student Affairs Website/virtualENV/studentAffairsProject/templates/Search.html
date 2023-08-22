@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="/../static/css/search.css">
+    <script src="/../static/js/search.js"></script>
+    <link rel="icon" href="/../static/images/icon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+    </script>
+
+</head>
+
+<body>
+    <nav>
+        <div id="nav">
+            <img src="/../static/images/Logo%20of%20Cairo.jpg" alt="no photo" class="cairo_photo">
+            <a href="{% url 'Home' %}">LOGOUT</a>&emsp;
+            <a id="StudentTable">STUDENT TABLE</a>
+            <a href="{% url 'Home-Registered' %}">HOME</a>&emsp;
+        </div>
+    </nav>
+
+    <div id="Body">
+        <form action="{% url 'search' %}" method="GET">
+
+            <div style="text-align: center" id="search_bar">
+                <label>
+                    <input id="label" type="search" required placeholder="Enter name..." name="q">
+                    <button type="submit">Search</button>
+                </label>
+
+            </div>
+        </form>
+        {%if students%}
+        <table id="table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Level</th>
+                    <th>Department</th>
+                    <th>Change department</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.status }}</td>
+                    <td>{{ student.level }}</td>
+                    <td>{{ student.department }}</td>
+
+                    <td>
+                        {% if student.level > 2 %}<a
+                            href="{% url 'Change Department' %}?name={{ student.name|urlencode }}&id={{ student.id|urlencode }}&department={{ student.department|urlencode }}">
+                            <button>Change Department</button></td></a>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+        <!--
+        <div id="Err" hidden="hidden">
+            <button onclick="NoError()">Ok</button>
+        </div>!-->
+    </div>
+</body>
+
+</html>

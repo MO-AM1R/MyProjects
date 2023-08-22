@@ -1,0 +1,61 @@
+void swap (int firstItemIdx, int secondItemIdx){
+        if (firstItemIdx > secondItemIdx){
+            std::swap(firstItemIdx, secondItemIdx) ;
+        }
+        if (firstItemIdx == secondItemIdx){
+            return ;
+        }
+        if (firstItemIdx < 0 || secondItemIdx >= Size){
+            cerr << "Invalid Index :(\n" ;
+            return ;
+        }
+
+        Node<T> *firstNode = Head;
+        Node<T> *secondNode = Head ;
+        Node<T> *Temp = Head;
+
+        for (int i = 0; i < secondItemIdx; ++i) {
+            if (i == firstItemIdx - 1){
+                firstNode = Temp->next ;
+            }
+            else if (i == secondItemIdx - 1){
+                secondNode = Temp->next ;
+            }
+            Temp = Temp->next ;
+        }
+
+        //Update The Last and Head
+        if (firstNode == Head){
+            Head = secondNode ;
+        }
+
+        if (secondNode == Last){
+            Last = firstNode ;
+        }
+
+        //Swap The next Nodes
+        Temp = firstNode->next ;
+        firstNode->next = secondNode->next ;
+        secondNode->next = Temp ;
+
+        //Update The Previous of next Nodes
+        if (firstNode->next) {
+            firstNode->next->previous = firstNode;
+        }
+        if (secondNode->next) {
+            secondNode->next->previous = secondNode;
+        }
+
+        //Swap The Previous Nodes
+        Temp = firstNode->previous ;
+        firstNode->previous = secondNode->previous ;
+        secondNode->previous = Temp ;
+
+        //Update The next of Previous Nodes
+        if (firstNode->previous) {
+            firstNode->previous->next = firstNode;
+        }
+        if (secondNode->previous) {
+            secondNode->previous->next = secondNode;
+        }
+    }

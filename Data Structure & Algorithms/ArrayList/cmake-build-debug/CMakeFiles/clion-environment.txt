@@ -1,0 +1,4 @@
+ToolSet: w64 9.0 (local)@F:\Programms\New folder\bin\mingw
+Options: 
+
+Options:-DCMAKE_MAKE_PROGRAM=F:/Programms/New folder/bin/ninja/win/ninja.exe

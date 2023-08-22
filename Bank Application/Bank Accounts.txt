@@ -1,0 +1,4 @@
+Badr | Elmarg | 01234567890 | FCAI-001  (Saving) | 30520 ;
+AhmedYasser | Helwan | 01234567890 | FCAI-002  (Basic) | 1000 ;
+Mohamed | Fysal | 01110089085 | FCAI-003  (Saving) | 15000 ;
+Omar | 9 ElTben Helwan | 01234567890 | FCAI-004  (Basic) | 1300 ;

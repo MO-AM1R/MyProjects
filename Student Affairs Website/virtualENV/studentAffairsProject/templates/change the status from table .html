@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="/../static/images/icon.png">
+  <link rel="stylesheet" href="/../static/css/change%20status.css">
+  <style>
+    .custom-select {
+  position: relative;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: inherit;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: white;
+}
+
+.custom-select select {
+  display: none; /* Hide the default select arrow */
+}
+
+.custom-select::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.custom-select option
+{
+    color: black;
+}
+
+.custom-select select:focus {
+  outline: none; /* Remove the default focus styles */
+}
+
+/* Style the selected option */
+.custom-select select option[selected] {
+  background-color: #e1e1e1;
+}
+
+/* Style the dropdown menu */
+.custom-select select option {
+  padding: 8px 12px;
+}
+
+/* Hover effect on the dropdown options */
+.custom-select select option:hover {
+  background-color: #e1e1e1;
+}
+
+/* Style the dropdown when it's open */
+.custom-select select:active,
+.custom-select select:focus {
+  background-color: #ddd;
+}
+  </style>
+  <meta charset="UTF-8">
+  <title>Students Table</title>
+</head>
+
+<body>
+  <!-- <script>
+    function Done() {
+
+      const rows = document.querySelectorAll("#tableBody tr"); // get all rows in the table
+
+      for (let i = 0; i < rows.length; i++) { // loop through each row and get the student object
+        const cells = rows[i].querySelectorAll("td");
+        const id = cells[1].textContent; // get the student ID
+
+        const student = JSON.parse(localStorage.getItem(id)); // get the existing student object from localStorage
+
+        const statusRadio = cells[2].querySelector("input[type='radio']:checked"); // update the status if the radio button was checked
+        if (statusRadio) {
+          student.Status = statusRadio.value;
+        }
+
+        localStorage.setItem(id, JSON.stringify(student)); // save the updated student object to localStorage
+      }
+    } -->
+
+  </script>
+
+  <div id="Target">
+    <nav class="nav">
+      <div>
+        <img src="/../static/images/Logo%20of%20Cairo.jpg" alt="no photo" class="cairo_photo">
+        <a href="{% url 'Home' %}">LOGOUT</a>&emsp;
+        <a id="STUDENT">STUDENT TABLE</a>&emsp;
+        <a href="{% url 'Home-Registered' %}">HOME</a>&emsp;
+
+      </div>
+    </nav>
+
+    <br>
+
+    <div style="text-align: -webkit-center; padding-top: 50px">
+      <table id="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Level</th>
+            <th>Department</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          {% for student in students %}
+  <tr>
+    <td>{{ student.name }}</td>
+    <td>{{ student.id }}</td>
+    <td>
+      <form method="POST" action="{% url 'change-status' id=student.id %}">
+        {% csrf_token %}
+        <select name="Status" id="Status{{ student.id }}" class="custom-select" onchange="this.form.submit()">
+          <option value="Active" {% if student.status == "Active" %}selected{% endif %}>Active</option>
+          <option value="Inactive" {% if student.status == "Inactive" %}selected{% endif %}>Inactive</option>
+        </select>
+      </form>
+    </td>
+    <td>{{ student.level }}</td>
+    <td>{{ student.department }}</td>
+  </tr>
+{% endfor %}
+        </tbody>
+        
+          <!-- <script>
+            const tableBody = document.getElementById("tableBody");
+
+            for (let i = 0; i < localStorage.length; i++) {
+              const key = localStorage.key(i);
+              const student = JSON.parse(localStorage.getItem(key));
+
+              const row = document.createElement("tr");
+
+              const nameCell = document.createElement("td");
+              nameCell.textContent = student.Name;
+
+              const idCell = document.createElement("td");
+              idCell.textContent = student.ID;
+
+              const statusCell = document.createElement("td");
+              const radioGroup = document.createElement("div");
+
+              // create radio buttons for active and inactive
+              const activeRadio = document.createElement("input");
+              activeRadio.type = "radio";
+              activeRadio.name = `${student.ID}-status`;
+              activeRadio.value = "Active";
+              activeRadio.checked = student.Status === "Active";
+
+              const activeLabel = document.createElement("label");
+              activeLabel.textContent = "Active";
+              activeLabel.setAttribute("for", `${student.ID}-status`);
+
+              const inactiveRadio = document.createElement("input");
+              inactiveRadio.type = "radio";
+              inactiveRadio.name = `${student.ID}-status`;
+              inactiveRadio.value = "Inactive";
+              inactiveRadio.checked = student.Status === "Inactive";
+
+              const inactiveLabel = document.createElement("label");
+              inactiveLabel.textContent = "Inactive";
+              inactiveLabel.setAttribute("for", `${student.ID}-status`);
+
+              radioGroup.appendChild(activeRadio);
+              radioGroup.appendChild(activeLabel);
+              radioGroup.appendChild(inactiveRadio);
+              radioGroup.appendChild(inactiveLabel);
+
+              statusCell.appendChild(radioGroup);
+
+              const levelCell = document.createElement("td");
+              levelCell.textContent = student.Level;
+
+              row.appendChild(nameCell);
+              row.appendChild(idCell);
+              row.appendChild(statusCell);
+              row.appendChild(levelCell);
+              tableBody.appendChild(row);
+            }
+          </script> -->
+        <!-- </tbody> -->
+      </table>
+      <br>
+      <!-- <button type="submit" onclick="Done()"> Save</button> -->
+    </form>
+    </div>
+  </div>
+</body>
+
+</html>

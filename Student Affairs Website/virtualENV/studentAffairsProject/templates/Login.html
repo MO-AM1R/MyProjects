@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Affairs (Home Page)</title>
+    <meta name="Login" content="Phase one Student Affairs website Home Page">
+    <link rel="stylesheet" href="/../static/css/Login.css">
+    <script src="/../static/js/Login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <link rel="icon" href="/../static/images/icon.png">
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav">
+
+            <img src="/../static/images/Logo%20of%20Cairo.jpg" alt="no photo" class="cairo_photo">
+            <a href="#footer-clean">ABOUT US</a>&emsp;
+            <a id="Login">LOGIN</a>&emsp;
+            <a href="{% url 'Register' %}">REGISTER</a>&emsp;
+            <a href="{% url 'Home' %}">HOME</a>&emsp;
+        </div>
+
+    </nav>
+    <br>
+
+    <div class="id">
+        <img src="/../static/images/login.png" alt="Error" style="width: 100px; height: 100px;">
+        <br>
+        <h1>Welcome To FCAI Student Affairs </h1>
+        <br>
+        <form id="log-in" method="POST" action="{% url 'Login' %}">
+            {% csrf_token %}
+            <div class="sii">
+                <p>Sign in with your username and password</p>
+            </div>
+            <label for="un"><b>E-mail</b></label>
+            <br>
+            <input id="email" type="text" placeholder="User Name" name="email" required>
+
+            <p></p>
+            <label for="pass"><b>Password</b></label>
+            <br>
+            <input id="password" type="password" placeholder="password" name="password" maxlength="30" minlength="7"
+                required>
+            <br>
+            {% if messages %}
+                <div class="alert" style="color: #A61420">
+                    {% for message in messages %}
+                        <div class="alert-message {% if message.tags %}{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div>
+                <br>
+                <input id="cb" type="checkbox" name="Remember me">
+                <label id="cb1" for="cb">Remember me</label>
+                <br>
+            </div>
+            <br>
+
+            <div>
+                <a href="Home.html"></a>
+                <button class="si" type="submit">Sign in</button>&emsp;
+            </div>
+
+            <b>Don't have an account ?</b>
+            <a id="rgn" href="/Home/Register">Register Now</a>
+        </form>
+    </div>
+
+
+    <footer id="footer-clean">
+        <div class="container">
+            <h3>About</h3>
+            <ul>
+                <li><a href="https://www.facebook.com/groups/fcaicu2025/" target="_blank">Faculty</a></li>
+                <li><a href="#">Team</a></li> <!-- Add  team page -->
+            </ul>
+        </div>
+        <div>
+            <p class="copyright">FCAI © 2023</p>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Change Department</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+  <link rel="icon" href="/../static/images/icon.png">
+  <!-- <script src="/../static/js/changeDepartment.js"></script> -->
+  <link rel="stylesheet" href="/../static/css/changeDepartment.css">
+</head>
+<nav>
+  <div class="nav">
+    <img src="/../static/images/Logo%20of%20Cairo.jpg" alt="no photo" class="cairo_photo">
+    <a href="{% url 'Home' %}">LOGOUT</a>&emsp;
+    <a id="searchNav">SEARCH</a>&emsp;
+    <a href="{% url 'Home-Registered' %}">HOME</a>&emsp;
+  </div>
+</nav>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <form id="validateForm" action="{% url 'Change Department' %}" method="POST">
+        {% csrf_token %}
+        <h1 id="title" style="text-align: center;">Update Department</h1>
+        <div class="user-details">
+          <label>
+            <span class="details">Student Name :</span>
+            <input type="text" id="StdNam" readonly name="name" value="{{ name }}">
+          </label>
+        </div>
+        <br>
+        <br>
+        <div class="user-details">
+          <label>
+            <span class="details">ID :</span>
+            <input type="text" id="id" name="id" value="{{ id }}" maxlength="20" minlength="7" readonly>
+          </label>
+        </div>
+        <br>
+        <br>
+        <div class="user-details">
+          <label>
+            <span class="details">Edit Department :</span>
+            <input id="Department" name="depart" list="Dep" class="ListOfDepart" value="{{ department }}">
+            <datalist id="Dep">
+              <option value="IS">
+              <option value="CS">
+              <option value="DS">
+              <option value="AI">
+              <option value="IT">
+            </datalist>
+          </label>
+        </div>
+        <br>
+        <input type="submit" value="Update" id="update">
+      </form>
+      
+      
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+"F:\Programms\New folder\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=F:/Programms/New folder/bin/ninja/win/ninja.exe" -G Ninja -S "F:\My Study\Coding\CLion\DataStructure" -B "F:\My Study\Coding\CLion\DataStructure\cmake-build-debug"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: F:/My Study/Coding/CLion/DataStructure/cmake-build-debug
