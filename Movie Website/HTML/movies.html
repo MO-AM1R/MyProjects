@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search For Movie</title>
+    <script src="../JS/movies.js"></script>
+    <link rel="stylesheet" href="../CSS/movies.css" />
+    <link rel="icon" href="../Images/icon.png" />
+  </head>
+
+  <body onload="getMovies()">
+    <div class="nav">
+      <a id="MoviesAnchor">MOVIES</a>
+      <a id="footerAnchor" href="#footer">ABOUT US</a>
+
+      <div class="search-box">
+        <input
+          type="text"
+          class="searchInput hidden"
+          disabled
+          id="searchInput"
+          oninput="search(this.value)"
+        />
+        <div class="search-btn" onclick="active(this)"></div>
+      </div>
+    </div>
+
+    <div class="container" id="container"></div>
+
+    <footer>
+      <div id="footer">
+        <div class="row">
+          <a target="_blank" href="https://www.facebook.com/MOAM1R">FACEBOOK</a>
+          <a target="_blank" href="https://www.linkedin.com/in/mo-am1r"
+            >LINKEDIN</a
+          >
+          <a target="_blank" href="https://github.com/MO-AM1R">GITHUB</a>
+          <a target="_blank" href="https://leetcode.com/MO-AM1R">LEETCODE</a>
+        </div>
+
+        <div class="column">
+          <a href="#">Contact us</a>
+          <a href="#">Our Services</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Career</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
